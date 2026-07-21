@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const areas = [
+  { name: 'Dallas', copy: 'Urban lofts, historic neighborhoods, and everything in between.' },
+  { name: 'Richardson', copy: 'Family-first schools, quiet streets, and a strong sense of place.' },
+  { name: 'Plano', copy: 'One of the strongest resale markets in the metroplex.' },
+  { name: 'Garland', copy: 'Value, character, and access to the whole DFW region.' },
+  { name: 'Frisco', copy: 'New construction, top-rated schools, and steady appreciation.' },
+];
+
+const services = [
+  {
+    title: 'Buyer representation',
+    copy: 'From the first tour to the closing table — someone in your corner who reads the market and the contract with equal care.',
+  },
+  {
+    title: 'Seller representation',
+    copy: 'Pricing, staging, exposure, and negotiation done properly. No wishful thinking, no shortcuts.',
+  },
+  {
+    title: 'Investor & relocation',
+    copy: 'Cash flow analysis, off-market channels, and a network that spans the whole metroplex.',
+  },
+];
+---
+
+<Layout title="Dallas-area real estate, done right" path="/">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow">Dallas · Richardson · Plano · Garland · Frisco</span>
+        <h1>Local expertise.<br />Honest guidance.<br />Results that hold up.</h1>
+        <p class="lede">
+          McKnight &amp; Associates is a Dallas-based real estate brokerage helping
+          families, first-time buyers, and investors move with confidence across the
+          metroplex.
+        </p>
+        <div class="hero__ctas">
+          <a href="/contact/" class="btn">Start a conversation</a>
+          <a href="/agents/" class="btn btn--ghost">Meet the team</a>
+        </div>
+      </div>
+      <aside class="hero__stats" aria-label="At a glance">
+        <div>
+          <div class="hero__stat-num">5</div>
+          <div class="hero__stat-label">Core markets served</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">15+</div>
+          <div class="hero__stat-label">Years combined experience</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">100%</div>
+          <div class="hero__stat-label">Focus on the client</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">What we do</span>
+      <h2>A brokerage built around the client, not the transaction.</h2>
+      <p class="lede">
+        Whether you're buying your first home, upgrading, downsizing, or building a rental
+        portfolio, we bring the same standard of care to every deal.
+      </p>
+
+      <div class="grid grid--3" style="margin-top:2.5rem;">
+        {services.map(s => (
+          <article class="card">
+            <h3>{s.title}</h3>
+            <p style="margin:0;color:var(--color-muted);">{s.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Where we work</span>
+      <h2>Five markets. One team that knows them all.</h2>
+      <div class="areas">
+        {areas.map(a => (
+          <article class="area">
+            <div class="area__name">{a.name}</div>
+            <p class="area__copy">{a.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container cta">
+      <div>
+        <h2 style="margin-bottom:0.5rem;">Ready when you are.</h2>
+        <p style="color:var(--color-muted);margin:0;">
+          A quick call is the fastest way to figure out what makes sense for you.
+        </p>
+      </div>
+      <a href="/contact/" class="btn btn--accent">Get in touch</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+    background:
+      linear-gradient(180deg, rgba(30,45,63,0.03) 0%, rgba(30,45,63,0) 100%),
+      var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 860px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .hero__copy h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .hero__stats {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero__stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    color: var(--color-navy);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .hero__stat-label {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted);
+  }
+
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+
+  .area {
+    background: var(--color-navy);
+    padding: 1.75rem 1.5rem;
+  }
+
+  .area__name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .area__copy {
+    color: #cfd6df;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+  }
+</style>

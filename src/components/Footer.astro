@@ -1,0 +1,113 @@
+---
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__name">McKnight &amp; Associates</div>
+      <p class="site-footer__blurb">
+        A Dallas-area brokerage helping families and investors buy and sell across
+        Richardson, Plano, Garland, and Frisco.
+      </p>
+    </div>
+
+    <div>
+      <div class="site-footer__heading">Contact</div>
+      <ul class="site-footer__list">
+        <li><a href="mailto:lewis@mcknight.com">lewis@mcknight.com</a></li>
+        <li><a href="tel:+15555555555">(555) 555-5555</a></li>
+        <li>Dallas, Texas</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="site-footer__heading">Site</div>
+      <ul class="site-footer__list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/agents/">Agents</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__meta">
+    <span>© {year} McKnight &amp; Associates. All rights reserved.</span>
+    <span>Equal Housing Opportunity · Licensed in Texas</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-navy);
+    color: #cfd6df;
+    margin-top: 4rem;
+  }
+
+  .site-footer a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-block: 3.5rem 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-block: 2.5rem 1.5rem;
+    }
+  }
+
+  .site-footer__name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
+  }
+
+  .site-footer__blurb {
+    color: #cfd6df;
+    font-size: 0.95rem;
+    max-width: 42ch;
+  }
+
+  .site-footer__heading {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-accent);
+    margin-bottom: 0.9rem;
+  }
+
+  .site-footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .site-footer__meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-block: 1.25rem 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.82rem;
+    color: #98a3b1;
+  }
+</style>

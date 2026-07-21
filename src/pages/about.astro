@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  {
+    title: 'Local, not just licensed',
+    copy: 'We live and work in the neighborhoods we sell. That means we know which streets flood, which builders cut corners, and which HOAs are worth their fees.',
+  },
+  {
+    title: 'Straight talk',
+    copy: "If a house is a bad idea, we'll say so. If a listing is priced wrong, we'll show you why. Clients hire us for judgment, not just access.",
+  },
+  {
+    title: 'Small on purpose',
+    copy: "We keep our roster tight so every client gets senior attention. You'll talk to the agent handling your deal — not a coordinator.",
+  },
+  {
+    title: 'Play the long game',
+    copy: "Most of our business comes from repeat clients and referrals. That only happens if we get this deal right — and the next one, and the one after that.",
+  },
+];
+---
+
+<Layout
+  title="About the brokerage"
+  description="McKnight & Associates is a small, focused real estate brokerage in Dallas. Learn how we work and why."
+  path="/about/"
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">About us</span>
+      <h1>A brokerage that behaves like it works for you.</h1>
+      <p class="lede">
+        McKnight &amp; Associates was built on a simple bet: that a small team of experienced
+        agents, working carefully with a limited number of clients, would out-serve any
+        volume shop in North Texas. Years in, we still think that's true.
+      </p>
+
+      <hr class="rule" />
+
+      <div class="about-grid">
+        <div>
+          <h2>How we work</h2>
+          <p>
+            Real estate is one of the largest financial decisions most people will ever make.
+            It deserves more than a fast quote and a lockbox code. Every client engagement
+            starts with a real conversation about what you're trying to accomplish, what your
+            timeline looks like, and what tradeoffs you're willing to make.
+          </p>
+          <p>
+            From there, we're heads-down for you — reading contracts word by word, running
+            comps that actually reflect your block, and negotiating like the number on the
+            closing statement matters. Because it does.
+          </p>
+        </div>
+        <div>
+          <h2>What we value</h2>
+          <ul class="values">
+            {values.map(v => (
+              <li>
+                <div class="values__title">{v.title}</div>
+                <div class="values__copy">{v.copy}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote">
+        <blockquote>
+          <p>
+            "The right agent doesn't just find you a house or a buyer. They keep you out of
+            the wrong deal — and that's worth more than any commission."
+          </p>
+          <cite>— Lewis McKnight, Broker</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 780px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .values {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .values__title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .values__copy {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  .quote {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius);
+  }
+
+  .quote blockquote {
+    margin: 0;
+  }
+
+  .quote p {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--color-navy);
+    margin: 0 0 1rem;
+    max-width: 60ch;
+  }
+
+  .quote cite {
+    font-style: normal;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+</style>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(npm install *)",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\lewis\\\\dev\" | Out-Null; robocopy \"G:\\\\My Drive\\\\Real Estate\\\\Mcknight Website\" \"C:\\\\Users\\\\lewis\\\\dev\\\\mcknight-website\" /E /XD node_modules dist .astro /NP /NFL /NDL /NJH; if \\($LASTEXITCODE -lt 8\\) { Write-Output \"COPY_OK exit=$LASTEXITCODE\" } else { Write-Output \"COPY_FAIL exit=$LASTEXITCODE\" })"
+    ]
+  }
+}
