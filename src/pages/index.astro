@@ -1,212 +1,790 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const areas = [
-  { name: 'Dallas', copy: 'Urban lofts, historic neighborhoods, and everything in between.' },
-  { name: 'Richardson', copy: 'Family-first schools, quiet streets, and a strong sense of place.' },
-  { name: 'Plano', copy: 'One of the strongest resale markets in the metroplex.' },
-  { name: 'Garland', copy: 'Value, character, and access to the whole DFW region.' },
-  { name: 'Frisco', copy: 'New construction, top-rated schools, and steady appreciation.' },
+const neighborhoods = [
+  { name: 'Dallas', img: '/images/nbhd-dallas.jpg', copy: 'Urban living, historic character' },
+  { name: 'Park Cities', img: '/images/nbhd-park-cities.jpg', copy: 'Highland Park & University Park estates' },
+  { name: 'Richardson', img: '/images/nbhd-richardson.jpg', copy: 'Family-first, strong schools' },
+  { name: 'Plano', img: '/images/nbhd-plano.jpg', copy: 'Top resale market in DFW' },
+  { name: 'Garland', img: '/images/nbhd-garland.jpg', copy: 'Value & central access' },
+  { name: 'Frisco', img: '/images/nbhd-frisco.jpg', copy: 'New construction, top-rated schools' },
 ];
 
 const services = [
-  {
-    title: 'Buyer representation',
-    copy: 'From the first tour to the closing table — someone in your corner who reads the market and the contract with equal care.',
-  },
-  {
-    title: 'Seller representation',
-    copy: 'Pricing, staging, exposure, and negotiation done properly. No wishful thinking, no shortcuts.',
-  },
-  {
-    title: 'Investor & relocation',
-    copy: 'Cash flow analysis, off-market channels, and a network that spans the whole metroplex.',
-  },
+  { title: 'Buying', copy: 'From first-time buyers to seasoned investors — patient tours and honest counsel.', href: '/buy/' },
+  { title: 'Selling', copy: 'Pricing, staging, exposure, and negotiation done properly.', href: '/contact/?interest=sell' },
+  { title: 'Renting', copy: 'Curated rental inventory across the metroplex.', href: '/rent/' },
+  { title: 'Property Management', copy: 'Full-service management for property owners.', href: '/rent/' },
+];
+
+const stats = [
+  { num: '20+', label: 'Years in business' },
+  { num: '1,000+', label: 'Properties sold' },
+  { num: '$100M+', label: 'In transactions' },
+  { num: '6', label: 'Core DFW markets' },
+];
+
+const testimonials = [
+  { quote: "I knew virtually nothing about the Dallas real estate market before bringing Lewis on as my realtor. His years of experience paid dividends as he guided me through the home buying process seamlessly. I couldn't have had a better experience.", author: 'Jessie Cole' },
+  { quote: 'Lewis and McKnight & Associates will always be my realtor. He and his team always do their best and treat every client like family.', author: 'Julia Downs' },
 ];
 ---
 
-<Layout title="Dallas-area real estate, done right" path="/">
-  <!-- Hero -->
+<Layout title="Dallas real estate, since 2003" path="/">
+  <!-- Hero with search widget -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__copy">
-        <span class="eyebrow">Dallas · Richardson · Plano · Garland · Frisco</span>
-        <h1>Local expertise.<br />Honest guidance.<br />Results that hold up.</h1>
-        <p class="lede">
-          McKnight &amp; Associates is a Dallas-based real estate brokerage helping
-          families, first-time buyers, and investors move with confidence across the
-          metroplex.
+        <span class="chip">Serving Dallas · Park Cities · Richardson · Plano · Garland · Frisco</span>
+        <h1>Find your next home<br />in <span class="hero__accent">North Texas.</span></h1>
+        <p class="hero__lede">
+          Twenty years of local expertise. Over a thousand properties sold. A real estate
+          team that treats every client like family.
         </p>
-        <div class="hero__ctas">
-          <a href="/contact/" class="btn">Start a conversation</a>
-          <a href="/agents/" class="btn btn--ghost">Meet the team</a>
+      </div>
+
+      <div class="search" role="region" aria-label="Property search">
+        <div class="search__tabs" role="tablist">
+          <button type="button" role="tab" aria-selected="true" data-tab="buy" class="search__tab is-active">Buy</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="rent" class="search__tab">Rent</button>
+        </div>
+
+        <form class="search__form" data-search-form>
+          <div class="search__fields">
+            <div class="search__field">
+              <label for="search-city">Where</label>
+              <select id="search-city" name="city">
+                <option value="">All DFW areas</option>
+                <option value="Dallas">Dallas</option>
+                <option value="Park Cities">Park Cities</option>
+                <option value="Richardson">Richardson</option>
+                <option value="Plano">Plano</option>
+                <option value="Garland">Garland</option>
+                <option value="Frisco">Frisco</option>
+              </select>
+            </div>
+            <div class="search__field">
+              <label for="search-price" data-price-label>Price range</label>
+              <select id="search-price" name="price" data-price-select>
+                <option value="">Any price</option>
+                <option value="Under $300k">Under $300k</option>
+                <option value="$300k–$500k">$300k – $500k</option>
+                <option value="$500k–$750k">$500k – $750k</option>
+                <option value="$750k–$1M">$750k – $1M</option>
+                <option value="$1M+">$1M+</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn--brand btn--lg search__btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Search homes
+          </button>
+        </form>
+
+        <div class="search__extra">
+          <span>Selling instead?</span>
+          <a href="/contact/?interest=sell">Get a free market analysis →</a>
         </div>
       </div>
-      <aside class="hero__stats" aria-label="At a glance">
-        <div>
-          <div class="hero__stat-num">5</div>
-          <div class="hero__stat-label">Core markets served</div>
-        </div>
-        <div>
-          <div class="hero__stat-num">15+</div>
-          <div class="hero__stat-label">Years combined experience</div>
-        </div>
-        <div>
-          <div class="hero__stat-num">100%</div>
-          <div class="hero__stat-label">Focus on the client</div>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="section">
-    <div class="container">
-      <span class="eyebrow">What we do</span>
-      <h2>A brokerage built around the client, not the transaction.</h2>
-      <p class="lede">
-        Whether you're buying your first home, upgrading, downsizing, or building a rental
-        portfolio, we bring the same standard of care to every deal.
-      </p>
+  <script is:inline>
+    (() => {
+      const tabs = document.querySelectorAll('.search__tab');
+      const form = document.querySelector('[data-search-form]');
+      const priceLabel = document.querySelector('[data-price-label]');
+      const priceSelect = document.querySelector('[data-price-select]');
+      if (!form || !tabs.length) return;
+      let mode = 'buy';
 
-      <div class="grid grid--3" style="margin-top:2.5rem;">
-        {services.map(s => (
-          <article class="card">
-            <h3>{s.title}</h3>
-            <p style="margin:0;color:var(--color-muted);">{s.copy}</p>
-          </article>
+      const rentPrices = [
+        { v: '', t: 'Any price' },
+        { v: 'Under $1,500/mo', t: 'Under $1,500/mo' },
+        { v: '$1,500–$2,500/mo', t: '$1,500 – $2,500/mo' },
+        { v: '$2,500–$4,000/mo', t: '$2,500 – $4,000/mo' },
+        { v: '$4,000+/mo', t: '$4,000+/mo' },
+      ];
+      const buyPrices = [
+        { v: '', t: 'Any price' },
+        { v: 'Under $300k', t: 'Under $300k' },
+        { v: '$300k–$500k', t: '$300k – $500k' },
+        { v: '$500k–$750k', t: '$500k – $750k' },
+        { v: '$750k–$1M', t: '$750k – $1M' },
+        { v: '$1M+', t: '$1M+' },
+      ];
+
+      function refillPrices(opts) {
+        priceSelect.innerHTML = '';
+        for (const o of opts) {
+          const el = document.createElement('option');
+          el.value = o.v;
+          el.textContent = o.t;
+          priceSelect.appendChild(el);
+        }
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', () => {
+          tabs.forEach(x => { x.classList.remove('is-active'); x.setAttribute('aria-selected', 'false'); });
+          t.classList.add('is-active');
+          t.setAttribute('aria-selected', 'true');
+          mode = t.dataset.tab;
+          priceLabel.textContent = mode === 'rent' ? 'Monthly rent' : 'Price range';
+          refillPrices(mode === 'rent' ? rentPrices : buyPrices);
+        });
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const city = form.city.value;
+        const price = form.price.value;
+        const params = new URLSearchParams();
+        params.set('interest', mode);
+        if (city) params.set('city', city);
+        if (price) params.set('price', price);
+        window.location.href = '/contact/?' + params.toString();
+      });
+    })();
+  </script>
+
+  <!-- Stats strip -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        {stats.map(s => (
+          <div class="stats__item">
+            <div class="stats__num">{s.num}</div>
+            <div class="stats__label">{s.label}</div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Areas -->
-  <section class="section section--dark">
+  <!-- Featured neighborhoods -->
+  <section class="section">
     <div class="container">
-      <span class="eyebrow">Where we work</span>
-      <h2>Five markets. One team that knows them all.</h2>
-      <div class="areas">
-        {areas.map(a => (
-          <article class="area">
-            <div class="area__name">{a.name}</div>
-            <p class="area__copy">{a.copy}</p>
-          </article>
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Explore the metroplex</span>
+          <h2>Neighborhoods we know inside out.</h2>
+        </div>
+        <p class="lede section__head-copy">
+          Twenty-plus years working the same streets means we know which houses hold
+          their value, which schools are worth the premium, and which builders you can
+          trust.
+        </p>
+      </div>
+
+      <div class="nbhds">
+        {neighborhoods.map(n => (
+          <a href="/contact/" class="nbhd">
+            <div class="nbhd__img" style={`background-image:url(${n.img})`} aria-hidden="true"></div>
+            <div class="nbhd__body">
+              <div class="nbhd__name">{n.name}</div>
+              <div class="nbhd__copy">{n.copy}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Full-service brokerage</span>
+      <h2>Every side of the deal, under one roof.</h2>
+      <p class="lede">
+        Buying, selling, renting, or owning income property — we handle it all with
+        the same standard of care.
+      </p>
+
+      <div class="services">
+        {services.map((s, i) => (
+          <a href={s.href} class="service">
+            <div class="service__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="service__title">{s.title}</h3>
+            <p class="service__copy">{s.copy}</p>
+            <span class="service__cta">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the broker -->
+  <section class="section">
+    <div class="container">
+      <div class="broker">
+        <div class="broker__photo" aria-hidden="true">
+          <div class="broker__initials">LM</div>
+        </div>
+        <div class="broker__body">
+          <span class="eyebrow">Meet the broker</span>
+          <h2>Lewis McKnight</h2>
+          <div class="broker__role">Broker · Owner · Realtor® TREC #0512364</div>
+          <p>
+            Lewis founded McKnight <span style="color:var(--color-brand);font-weight:600;">&amp;</span> Associates in 2003 with one idea: a
+            small team of experienced agents, working carefully with a limited number
+            of clients, would out-serve any volume shop in North Texas. Twenty years
+            and a thousand transactions later, the model still works.
+          </p>
+          <p>
+            Dallas native. Broker of record. Straight shooter — you'll know what he
+            actually thinks about the deal, not just what you want to hear.
+          </p>
+          <div class="broker__actions">
+            <a href="/team/" class="btn btn--ghost">Meet the whole team</a>
+            <a href="tel:+12147404989" class="btn">Call Lewis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Client stories</span>
+      <h2>What people say.</h2>
+
+      <div class="testimonials">
+        {testimonials.map(t => (
+          <figure class="testimonial">
+            <div class="testimonial__quote-mark" aria-hidden="true">"</div>
+            <blockquote>
+              <p>{t.quote}</p>
+            </blockquote>
+            <figcaption>
+              <span class="testimonial__author">{t.author}</span>
+              <span class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </figcaption>
+          </figure>
         ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section">
-    <div class="container cta">
-      <div>
-        <h2 style="margin-bottom:0.5rem;">Ready when you are.</h2>
-        <p style="color:var(--color-muted);margin:0;">
-          A quick call is the fastest way to figure out what makes sense for you.
-        </p>
+  <section class="section section--dark cta-section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <span class="eyebrow">Your dream house is one step away</span>
+          <h2 style="margin-bottom:0.75rem;">Let's talk about what's next.</h2>
+          <p style="color:#a3a6ad;margin:0;max-width:60ch;">
+            A quick call is the fastest way to figure out what makes sense for you.
+            No pressure, no scripts.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a href="tel:+12147404989" class="btn btn--brand btn--lg">Call 214-740-4989</a>
+          <a href="/contact/" class="btn btn--outline-light btn--lg">Send a message</a>
+        </div>
       </div>
-      <a href="/contact/" class="btn btn--accent">Get in touch</a>
     </div>
   </section>
 </Layout>
 
 <style>
+  /* Hero */
   .hero {
-    padding-block: clamp(3.5rem, 8vw, 6rem);
+    position: relative;
+    padding-block: clamp(3.5rem, 7vw, 6rem) clamp(3.5rem, 7vw, 5.5rem);
     background:
-      linear-gradient(180deg, rgba(30,45,63,0.03) 0%, rgba(30,45,63,0) 100%),
-      var(--color-bg);
+      radial-gradient(circle at 20% 10%, rgba(160, 37, 51, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 90% 90%, rgba(19, 20, 23, 0.05) 0%, transparent 55%),
+      var(--color-bg-soft);
     border-bottom: 1px solid var(--color-line);
   }
 
   .hero__inner {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
     align-items: center;
   }
 
-  @media (max-width: 860px) {
-    .hero__inner {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+  @media (max-width: 940px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 2.5rem; }
   }
 
-  .hero__copy h1 {
+  .hero__copy .chip { margin-bottom: 1.5rem; }
+
+  .hero h1 {
     margin-bottom: 1.25rem;
+    max-width: 14ch;
   }
 
-  .hero__ctas {
+  .hero__accent {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .hero__lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 48ch;
+    margin: 0;
+  }
+
+  /* Search widget */
+  .search {
+    background: #ffffff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .search__tabs {
     display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
+    background: var(--color-bg-soft);
+    border-bottom: 1px solid var(--color-line);
   }
 
-  .hero__stats {
+  .search__tab {
+    flex: 1;
+    padding: 1.1rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    position: relative;
+  }
+
+  .search__tab:hover { color: var(--color-ink); }
+
+  .search__tab.is-active {
+    background: #ffffff;
+    color: var(--color-ink);
+  }
+
+  .search__tab.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: var(--color-brand);
+  }
+
+  .search__form {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search__fields {
     display: grid;
-    gap: 1.5rem;
-    padding: 2rem;
-    background: var(--color-surface);
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  @media (max-width: 460px) {
+    .search__fields { grid-template-columns: 1fr; }
+  }
+
+  .search__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .search__field label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
+  .search__field select {
+    font: inherit;
+    padding: 0.85rem 0.9rem;
     border: 1px solid var(--color-line);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
+    background: #fff;
+    color: var(--color-ink);
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23626873' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    background-size: 12px;
+    padding-right: 2.25rem;
   }
 
-  .hero__stat-num {
-    font-family: var(--font-serif);
-    font-size: 2.4rem;
-    color: var(--color-navy);
-    line-height: 1;
-    margin-bottom: 0.35rem;
+  .search__field select:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(160, 37, 51, 0.12);
   }
 
-  .hero__stat-label {
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
+  .search__btn {
+    width: 100%;
+    margin-top: 0.35rem;
+  }
+
+  .search__extra {
+    padding: 1rem 1.75rem 1.25rem;
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-line);
+    font-size: 0.88rem;
     color: var(--color-muted);
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
   }
 
-  .areas {
+  .search__extra a {
+    color: var(--color-brand);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .search__extra a:hover { color: var(--color-brand-dark); }
+
+  /* Stats */
+  .stats {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+    padding-block: 2.5rem;
+  }
+
+  .stats__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 780px) {
+    .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  }
+
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .stats__num {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--color-brand);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .stats__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
+  /* Section head */
+  .section__head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 820px) {
+    .section__head { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-bottom: 2.5rem; }
+  }
+
+  .section__head-copy { margin: 0; }
+
+  /* Neighborhoods */
+  .nbhds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) { .nbhds { grid-template-columns: repeat(2, 1fr); } }
+
+  .nbhd {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-top: 2.5rem;
-  }
-
-  .area {
-    background: var(--color-navy);
-    padding: 1.75rem 1.5rem;
-  }
-
-  .area__name {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
+    aspect-ratio: 3 / 4;
+    text-decoration: none;
     color: #ffffff;
+    background: var(--color-bg-dark);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .nbhd:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); color: #ffffff; }
+
+  .nbhd__img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .nbhd:hover .nbhd__img { transform: scale(1.08); }
+
+  .nbhd::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19,20,23,0.05) 0%, rgba(19,20,23,0.75) 100%);
+  }
+
+  .nbhd__body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.25rem;
+    z-index: 1;
+  }
+
+  .nbhd__name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2rem;
+  }
+
+  .nbhd__copy {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  /* Services */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 900px) { .services { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .services { grid-template-columns: 1fr; } }
+
+  .service {
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .service:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-line-soft);
+    color: var(--color-ink);
+  }
+
+  .service__num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-brand);
     margin-bottom: 0.5rem;
   }
 
-  .area__copy {
-    color: #cfd6df;
-    font-size: 0.95rem;
+  .service__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+
+  .service__copy {
+    color: var(--color-muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+
+  .service__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-brand);
+  }
+
+  /* Broker */
+  .broker {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 780px) {
+    .broker { grid-template-columns: 1fr; gap: 2rem; justify-items: center; text-align: center; }
+    .broker__body { text-align: left; }
+  }
+
+  .broker__photo {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (max-width: 500px) {
+    .broker__photo { width: 240px; height: 240px; }
+  }
+
+  .broker__photo::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+  }
+
+  .broker__initials {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .broker__role {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .broker__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 780px) { .testimonials { grid-template-columns: 1fr; } }
+
+  .testimonial {
+    position: relative;
     margin: 0;
+    padding: 2.25rem 2rem 1.75rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .testimonial__quote-mark {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--color-brand);
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    padding-top: 6px;
+  }
+
+  .testimonial blockquote { margin: 0; }
+
+  .testimonial p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin: 0 0 1.25rem;
+    max-width: none;
+  }
+
+  .testimonial figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .testimonial__author {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .testimonial__stars {
+    color: var(--color-brand);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding-block: 4rem;
   }
 
   .cta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
-    padding: 2.5rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta__actions {
+    display: flex;
+    gap: 0.75rem;
     flex-wrap: wrap;
   }
 </style>

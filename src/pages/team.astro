@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AgentCard from '../components/AgentCard.astro';
+
+const agents = [
+  {
+    name: 'Lewis McKnight',
+    title: 'Broker · Owner',
+    license: '0512364',
+    email: 'Lewis@mcknight.com',
+    phone: '214-740-4989',
+    bio: 'Founder of McKnight & Associates. Twenty-plus years working the Dallas market, with more than a thousand transactions across residential sales, investment property, and management.',
+  },
+  {
+    name: 'Robert Roberts',
+    title: 'Realtor®',
+    license: '0814207',
+    email: 'robertr@mrhomebuyers.net',
+    phone: '817-689-9534',
+    bio: 'Buyer and seller representation across the DFW metroplex, with a focus on clear communication and thorough market analysis.',
+  },
+  {
+    name: 'Stephen Maner',
+    title: 'Realtor®',
+    license: '836239',
+    email: 'steve.maner@gmail.com',
+    phone: '972-777-4948',
+    bio: 'Residential and investment property specialist serving buyers, sellers, and property owners throughout North Texas.',
+  },
+  {
+    name: 'Jason McPhaul',
+    title: 'Realtor®',
+    license: '0813357',
+    email: 'mcphaulrealty@gmail.com',
+    phone: '512-788-0901',
+    bio: 'Represents buyers and sellers across the Dallas area with a focus on patient tours, honest counsel, and careful contract review.',
+  },
+  {
+    name: 'Bart Breunig',
+    title: 'Realtor®',
+    license: '0660394',
+    email: 'Bart@bruenig.com',
+    phone: '214-402-9610',
+    bio: 'Residential sales and investor clients throughout the DFW metroplex, with deep experience in negotiation and rental property analysis.',
+  },
+];
+---
+
+<Layout
+  title="Our team"
+  description="Meet the McKnight & Associates team — five licensed Texas Realtors serving Dallas, Park Cities, Richardson, Plano, Garland, and Frisco."
+  path="/team/"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our team</span>
+      <h1>The people behind the deals.</h1>
+      <p class="lede">
+        A small team on purpose. Every client is worked directly by a licensed Realtor®
+        — no handoffs to assistants, no lead-farming pipeline.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="team-grid">
+        {agents.map(agent => <AgentCard {...agent} />)}
+      </div>
+
+      <div class="join">
+        <div>
+          <span class="eyebrow">Join us</span>
+          <h2 style="margin-bottom:0.5rem;">Interested in joining the team?</h2>
+          <p style="color:var(--color-muted);margin:0;max-width:60ch;">
+            We're always open to conversations with experienced agents who share our
+            approach.
+          </p>
+        </div>
+        <a href="/contact/" class="btn">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-bg-soft);
+    padding-block: clamp(4rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .join {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+    padding: 2.5rem;
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+  }
+</style>

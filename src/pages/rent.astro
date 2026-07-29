@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const owner = [
+  { title: 'Tenant placement', copy: 'Marketing, showings, applications, and background checks — we place tenants who\'ll treat your property well.' },
+  { title: 'Rent collection', copy: 'On-time monthly collection with clear owner reporting.' },
+  { title: 'Maintenance', copy: 'Vetted contractor network. Approve work under your threshold, loop you in above it.' },
+  { title: 'Compliance', copy: 'Regular inspections plus lease and Texas-code compliance handled by an experienced broker.' },
+];
+---
+
+<Layout
+  title="Renting & property management"
+  description="Rental homes across the DFW metroplex, and full-service property management for owners. McKnight & Associates — Dallas real estate since 2003."
+  path="/rent/"
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Rent</span>
+      <h1>Rent your next home.<br /><span class="brand-text">Or list yours.</span></h1>
+      <p class="lede">
+        Two sides of the same business. We help renters find the right place, and we
+        take property management off owners' hands so they can just own the asset.
+      </p>
+    </div>
+  </section>
+
+  <!-- Split: renters vs owners -->
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <!-- Renters -->
+        <div class="split__card">
+          <span class="chip">For renters</span>
+          <h2>Looking for a place?</h2>
+          <p>
+            Tell us what you want — neighborhood, budget, timeline, must-haves. We'll
+            pull an up-to-date list of rentals that match, arrange tours, and walk you
+            through the lease.
+          </p>
+          <ul class="feature-list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Single-family homes and townhouses across Dallas &amp; the northern suburbs
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Curated matches — not a firehose of listings
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Direct communication with your leasing agent
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Application &amp; lease handled by a licensed broker
+            </li>
+          </ul>
+          <a href="/contact/?interest=rent" class="btn">Start looking</a>
+        </div>
+
+        <!-- Owners -->
+        <div class="split__card split__card--dark">
+          <span class="chip chip--light">For owners</span>
+          <h2>Own a rental? Let us run it.</h2>
+          <p>
+            Full-service property management from a Texas-licensed broker who's been
+            doing this since 2003. Tenant placement, rent collection, maintenance,
+            reporting — everything.
+          </p>
+          <div class="owner-services">
+            {owner.map(o => (
+              <div class="owner-service">
+                <div class="owner-service__title">{o.title}</div>
+                <div class="owner-service__copy">{o.copy}</div>
+              </div>
+            ))}
+          </div>
+          <a href="/contact/?interest=manage" class="btn btn--brand">Request a proposal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--soft cta-section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <span class="eyebrow">Talk to us</span>
+          <h2 style="margin-bottom:0.75rem;">Renting or owning — same phone number.</h2>
+          <p style="color:var(--color-muted);margin:0;max-width:60ch;">
+            Give us a call or drop a message. We'll figure out what you need and take
+            it from there.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a href="tel:+12147404989" class="btn btn--brand btn--lg">Call 214-740-4989</a>
+          <a href="/contact/" class="btn btn--ghost btn--lg">Send a message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-bg-soft);
+    padding-block: clamp(4rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .brand-text { color: var(--color-brand); font-weight: 700; }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+  .split__card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+  }
+
+  .split__card--dark {
+    background: var(--color-bg-dark);
+    color: #dcdde1;
+    border-color: var(--color-bg-dark);
+  }
+
+  .split__card--dark h2 { color: #ffffff; }
+  .split__card--dark p { color: rgba(255,255,255,0.85); }
+
+  .chip--light {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .feature-list svg {
+    color: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .owner-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.75rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  @media (max-width: 500px) { .owner-services { grid-template-columns: 1fr; } }
+
+  .owner-service__title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .owner-service__copy {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .cta-section { padding-block: 4rem; }
+  .cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+</style>

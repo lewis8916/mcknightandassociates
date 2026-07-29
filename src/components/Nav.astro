@@ -1,7 +1,11 @@
 ---
+import logoSrc from '../assets/logo.jpg';
+
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/agents/', label: 'Agents' },
+  { href: '/buy/', label: 'Buy' },
+  { href: '/rent/', label: 'Rent' },
+  { href: '/team/', label: 'Agents' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];
@@ -16,11 +20,7 @@ const isActive = (href: string) => {
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="/" class="brand" aria-label="McKnight & Associates — home">
-      <span class="brand__mark">M</span>
-      <span class="brand__wordmark">
-        <span class="brand__name">McKnight</span>
-        <span class="brand__tag">&amp; Associates</span>
-      </span>
+      <img src={logoSrc.src} width={logoSrc.width} height={logoSrc.height} alt="McKnight & Associates Realtors" />
     </a>
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" />
@@ -28,83 +28,69 @@ const isActive = (href: string) => {
       <span></span><span></span><span></span>
     </label>
 
-    <nav class="site-nav" aria-label="Primary">
-      <ul>
-        {links.map(({ href, label }) => (
-          <li>
-            <a
-              href={href}
-              class:list={['site-nav__link', { 'is-active': isActive(href) }]}
-              aria-current={isActive(href) ? 'page' : undefined}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div class="site-header__right">
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          {links.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                class:list={['site-nav__link', { 'is-active': isActive(href) }]}
+                aria-current={isActive(href) ? 'page' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a href="tel:+12147404989" class="site-header__phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>214-740-4989</span>
+      </a>
+    </div>
   </div>
 </header>
 
 <style>
   .site-header {
-    background: var(--color-bg);
+    background: #ffffff;
     border-bottom: 1px solid var(--color-line);
     position: sticky;
     top: 0;
     z-index: 20;
-    backdrop-filter: saturate(180%) blur(10px);
-    background-color: rgba(250, 247, 242, 0.9);
   }
 
   .site-header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: 1rem;
+    padding-block: 0;
     gap: 1.5rem;
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
     text-decoration: none;
-    color: var(--color-navy);
+    flex-shrink: 0;
+    height: 216px;
+    overflow: hidden;
   }
 
-  .brand__mark {
-    display: inline-grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    background: var(--color-navy);
-    color: #fff;
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 1.35rem;
-    border-radius: 2px;
+  .brand img {
+    height: 340px;
+    width: auto;
+    display: block;
+    margin-block: -62px;
   }
 
-  .brand__wordmark {
+  .site-header__right {
     display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-
-  .brand__name {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-  }
-
-  .brand__tag {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: var(--color-muted);
-    margin-top: 0.25rem;
+    align-items: center;
+    gap: 2rem;
   }
 
   .site-nav ul {
@@ -117,11 +103,18 @@ const isActive = (href: string) => {
 
   .site-nav__link {
     text-decoration: none;
-    color: var(--color-ink);
-    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    font-size: 0.92rem;
     font-weight: 500;
-    padding-block: 0.5rem;
+    padding-block: 0.6rem;
     position: relative;
+    transition: color 0.15s ease;
+  }
+
+  .site-nav__link:hover { color: var(--color-brand); }
+
+  .site-nav__link.is-active {
+    color: var(--color-ink);
   }
 
   .site-nav__link.is-active::after {
@@ -129,13 +122,33 @@ const isActive = (href: string) => {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -1px;
     height: 2px;
-    background: var(--color-accent);
+    background: var(--color-brand);
+    border-radius: 2px;
   }
 
-  .site-nav__link:hover {
-    color: var(--color-accent-dark);
+  .site-header__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    background: var(--color-brand);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: var(--radius);
+    transition: background 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .site-header__phone:hover {
+    background: var(--color-brand-dark);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   .nav-toggle,
@@ -143,47 +156,74 @@ const isActive = (href: string) => {
     display: none;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 1024px) {
+    .brand { height: 180px; }
+    .brand img { height: 284px; margin-block: -52px; }
+    .site-nav ul { gap: 1.4rem; }
+    .site-nav__link { font-size: 0.86rem; }
+    .site-header__right { gap: 1.25rem; }
+  }
+
+  @media (max-width: 860px) {
     .nav-toggle__label {
       display: inline-flex;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
       padding: 0.5rem;
+      order: 3;
     }
 
     .nav-toggle__label span {
       display: block;
-      width: 24px;
+      width: 26px;
       height: 2px;
-      background: var(--color-navy);
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      background: var(--color-ink);
+      transition: transform 0.2s ease;
     }
 
-    .site-nav {
+    .brand { height: 144px; }
+    .brand img { height: 227px; margin-block: -41px; }
+
+    .site-header__right {
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--color-bg);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #ffffff;
       border-bottom: 1px solid var(--color-line);
       display: none;
+      box-shadow: var(--shadow-md);
     }
 
     .site-nav ul {
       flex-direction: column;
       gap: 0;
-      padding: 0.5rem 1.25rem 1.25rem;
+      padding: 0.5rem 1.5rem 1rem;
     }
 
     .site-nav__link {
       display: block;
-      padding-block: 0.85rem;
+      padding-block: 0.9rem;
       border-bottom: 1px solid var(--color-line);
+      font-size: 0.95rem;
     }
 
-    .nav-toggle:checked ~ .site-nav {
-      display: block;
+    .site-header__phone {
+      margin: 0 1.5rem 1.5rem;
+      justify-content: center;
     }
+
+    .nav-toggle:checked ~ .site-header__right {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .brand { height: 117px; }
+    .brand img { height: 184px; margin-block: -33px; }
   }
 </style>

@@ -2,90 +2,129 @@
 interface Props {
   name: string;
   title: string;
-  bio: string;
-  email?: string;
-  phone?: string;
+  license: string;
+  email: string;
+  phone: string;
+  bio?: string;
   initials?: string;
 }
 
-const { name, title, bio, email, phone, initials } = Astro.props;
+const { name, title, license, email, phone, bio, initials } = Astro.props;
 const displayInitials = initials ?? name
   .split(' ')
   .map(n => n[0])
   .slice(0, 2)
   .join('');
+const telHref = `tel:+1${phone.replace(/[^0-9]/g, '')}`;
 ---
 
 <article class="agent">
-  <div class="agent__avatar" aria-hidden="true">{displayInitials}</div>
+  <div class="agent__avatar" aria-hidden="true">
+    <span>{displayInitials}</span>
+  </div>
   <div class="agent__body">
     <h3 class="agent__name">{name}</h3>
     <div class="agent__title">{title}</div>
-    <p class="agent__bio">{bio}</p>
-    {(email || phone) && (
-      <ul class="agent__contact">
-        {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
-        {phone && <li><a href={`tel:${phone.replace(/[^0-9+]/g, '')}`}>{phone}</a></li>}
-      </ul>
-    )}
+    <div class="agent__license">TREC #{license}</div>
+    {bio && <p class="agent__bio">{bio}</p>}
+    <div class="agent__contact">
+      <a href={`mailto:${email}`} class="agent__contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>{email}</span>
+      </a>
+      <a href={telHref} class="agent__contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>{phone}</span>
+      </a>
+    </div>
   </div>
 </article>
 
 <style>
   .agent {
-    background: var(--color-surface);
+    background: var(--color-bg);
     border: 1px solid var(--color-line);
-    border-radius: var(--radius);
-    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    box-shadow: var(--shadow-sm);
+    gap: 1.25rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .agent:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-line-soft);
+    transform: translateY(-3px);
   }
 
   .agent__avatar {
-    width: 72px;
-    height: 72px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
-    background: var(--color-navy);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+    color: #ffffff;
     display: grid;
     place-items: center;
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .agent__name {
-    margin: 0 0 0.15rem;
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: var(--color-navy);
-    letter-spacing: 0;
+    margin: 0 0 0.2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
   .agent__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-brand);
+    margin-bottom: 0.4rem;
+  }
+
+  .agent__license {
     font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--color-accent-dark);
+    color: var(--color-muted);
     margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
   }
 
   .agent__bio {
-    color: var(--color-muted);
+    color: var(--color-ink-soft);
     font-size: 0.95rem;
+    line-height: 1.6;
     margin: 0 0 0.5rem;
   }
 
   .agent__contact {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    font-size: 0.9rem;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+    margin-top: auto;
   }
+
+  .agent__contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--color-ink-soft);
+    font-size: 0.88rem;
+    transition: color 0.15s ease;
+  }
+
+  .agent__contact-item:hover { color: var(--color-brand); }
+  .agent__contact-item svg { color: var(--color-muted); flex-shrink: 0; }
 </style>

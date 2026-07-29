@@ -2,75 +2,122 @@
 import Layout from '../layouts/Layout.astro';
 
 const values = [
-  {
-    title: 'Local, not just licensed',
-    copy: 'We live and work in the neighborhoods we sell. That means we know which streets flood, which builders cut corners, and which HOAs are worth their fees.',
-  },
-  {
-    title: 'Straight talk',
-    copy: "If a house is a bad idea, we'll say so. If a listing is priced wrong, we'll show you why. Clients hire us for judgment, not just access.",
-  },
-  {
-    title: 'Small on purpose',
-    copy: "We keep our roster tight so every client gets senior attention. You'll talk to the agent handling your deal — not a coordinator.",
-  },
-  {
-    title: 'Play the long game',
-    copy: "Most of our business comes from repeat clients and referrals. That only happens if we get this deal right — and the next one, and the one after that.",
-  },
+  { title: 'Twenty years, one team', copy: 'Founded in 2003, we\'ve worked the same North Texas neighborhoods long enough to know them properly.' },
+  { title: 'Straight talk', copy: "If a house is a bad idea, we'll say so. If a listing is priced wrong, we'll show you why." },
+  { title: 'Small on purpose', copy: "We keep our roster tight so every client gets senior attention." },
+  { title: 'The long game', copy: 'Most of our business comes from repeat clients and referrals — because we work like it does.' },
+];
+
+const milestones = [
+  { year: '2003', label: 'McKnight & Associates founded by Lewis McKnight in Dallas.' },
+  { year: '2013', label: 'Expanded into property management to serve investor clients end-to-end.' },
+  { year: '2023', label: 'Passed $100 million in cumulative transactions and 1,000+ homes sold.' },
 ];
 ---
 
 <Layout
   title="About the brokerage"
-  description="McKnight & Associates is a small, focused real estate brokerage in Dallas. Learn how we work and why."
+  description="McKnight & Associates has served the Dallas metroplex for over 20 years. Founded 2003. Over 1,000 properties sold, $100M+ in transactions."
   path="/about/"
 >
-  <section class="section">
+  <section class="page-hero">
     <div class="container">
       <span class="eyebrow">About us</span>
-      <h1>A brokerage that behaves like it works for you.</h1>
+      <h1>Dallas real estate,<br /><span class="brand-text">since 2003.</span></h1>
       <p class="lede">
-        McKnight &amp; Associates was built on a simple bet: that a small team of experienced
-        agents, working carefully with a limited number of clients, would out-serve any
-        volume shop in North Texas. Years in, we still think that's true.
+        McKnight <span class="amp">&amp;</span> Associates was founded by Lewis McKnight
+        in 2003 on a simple bet: that a small team of experienced agents, working
+        carefully with a limited number of clients, would out-serve any volume shop in
+        North Texas. Twenty years and a thousand transactions in, we still think that's
+        true.
       </p>
+    </div>
+  </section>
 
-      <hr class="rule" />
-
-      <div class="about-grid">
+  <!-- Stats -->
+  <section class="about-stats-section">
+    <div class="container">
+      <div class="about-stats">
         <div>
-          <h2>How we work</h2>
-          <p>
-            Real estate is one of the largest financial decisions most people will ever make.
-            It deserves more than a fast quote and a lockbox code. Every client engagement
-            starts with a real conversation about what you're trying to accomplish, what your
-            timeline looks like, and what tradeoffs you're willing to make.
-          </p>
-          <p>
-            From there, we're heads-down for you — reading contracts word by word, running
-            comps that actually reflect your block, and negotiating like the number on the
-            closing statement matters. Because it does.
-          </p>
+          <div class="about-stats__num">20+</div>
+          <div class="about-stats__label">Years serving DFW</div>
         </div>
         <div>
-          <h2>What we value</h2>
-          <ul class="values">
-            {values.map(v => (
-              <li>
-                <div class="values__title">{v.title}</div>
-                <div class="values__copy">{v.copy}</div>
-              </li>
-            ))}
-          </ul>
+          <div class="about-stats__num">1,000+</div>
+          <div class="about-stats__label">Properties sold</div>
+        </div>
+        <div>
+          <div class="about-stats__num">$100M+</div>
+          <div class="about-stats__label">In transactions</div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- How we work + values -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span class="eyebrow">How we work</span>
+          <h2>Every client, worked directly.</h2>
+          <p>
+            Real estate is one of the largest financial decisions most people will ever
+            make. It deserves more than a fast quote and a lockbox code. Every client
+            engagement starts with a real conversation about what you're trying to
+            accomplish, your timeline, and the tradeoffs you're willing to make.
+          </p>
+          <p>
+            From there, we're heads-down for you — reading contracts word by word,
+            running comps that reflect your block, and negotiating like the number on
+            the closing statement matters. Because it does.
+          </p>
+          <p>
+            Today we work with buyers, sellers, investors, and property owners across
+            Dallas, Park Cities, Richardson, Plano, Garland, and Frisco. Same standard
+            of care whether it's your first condo or your fifteenth rental.
+          </p>
+        </div>
+        <div>
+          <span class="eyebrow">What we value</span>
+          <div class="values">
+            {values.map(v => (
+              <div class="values__item">
+                <div class="values__title">{v.title}</div>
+                <div class="values__copy">{v.copy}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Milestones</span>
+      <h2>Twenty years, in three lines.</h2>
+      <div class="timeline">
+        {milestones.map(m => (
+          <div class="timeline__item">
+            <div class="timeline__year">{m.year}</div>
+            <div class="timeline__label">{m.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="section">
+    <div class="container container--narrow">
       <div class="quote">
+        <div class="quote__mark" aria-hidden="true">"</div>
         <blockquote>
           <p>
-            "The right agent doesn't just find you a house or a buyer. They keep you out of
-            the wrong deal — and that's worth more than any commission."
+            The right agent doesn't just find you a house or a buyer. They keep you out
+            of the wrong deal — and that's worth more than any commission.
           </p>
           <cite>— Lewis McKnight, Broker</cite>
         </blockquote>
@@ -80,66 +127,146 @@ const values = [
 </Layout>
 
 <style>
+  .page-hero {
+    background: var(--color-bg-soft);
+    padding-block: clamp(4rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .brand-text { color: var(--color-brand); font-weight: 700; }
+  .amp { color: var(--color-brand); font-weight: 700; }
+
+  .about-stats-section {
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .about-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .about-stats__num {
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 700;
+    color: var(--color-brand);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-stats__label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2.5rem;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 4rem;
   }
 
-  @media (max-width: 780px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
+  @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
 
   .values {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
+    gap: 1.5rem;
+  }
+
+  .values__item {
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-brand);
   }
 
   .values__title {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--color-navy);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-ink);
     margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
   }
 
   .values__copy {
     color: var(--color-muted);
     font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  @media (max-width: 780px) { .timeline { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .timeline__year {
+    font-size: 2.75rem;
+    line-height: 1;
+    color: var(--color-brand);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline__label {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    line-height: 1.55;
   }
 
   .quote {
-    margin-top: 4rem;
-    padding: 2.5rem;
-    background: var(--color-surface);
-    border-left: 3px solid var(--color-accent);
-    border-radius: var(--radius);
+    position: relative;
+    padding: 3rem;
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
   }
 
-  .quote blockquote {
-    margin: 0;
+  .quote__mark {
+    position: absolute;
+    top: -14px;
+    left: 32px;
+    width: 56px;
+    height: 56px;
+    background: var(--color-brand);
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    padding-top: 8px;
   }
+
+  .quote blockquote { margin: 0; }
 
   .quote p {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
     line-height: 1.5;
-    color: var(--color-navy);
+    color: var(--color-ink);
     margin: 0 0 1rem;
-    max-width: 60ch;
+    max-width: none;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   .quote cite {
-    font-style: normal;
+    font-size: 0.85rem;
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 500;
   }
 </style>

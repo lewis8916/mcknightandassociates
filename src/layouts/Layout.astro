@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'McKnight & Associates — a Dallas-based real estate brokerage serving Richardson, Plano, Garland, and Frisco. Local expertise, honest guidance, and results that hold up.',
+  description = 'McKnight & Associates — Dallas-area real estate brokerage and property management. Founded 2003. Over 1,000 properties sold, $100M+ in transactions across Dallas, Park Cities, Richardson, Plano, Garland, and Frisco.',
   path = '/',
 } = Astro.props;
 
@@ -25,6 +25,7 @@ const canonical = new URL(path, Astro.site).toString();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#a02533" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -33,6 +34,7 @@ const canonical = new URL(path, Astro.site).toString();
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -42,7 +44,7 @@ const canonical = new URL(path, Astro.site).toString();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     />
 
     <title>{title} | {siteName}</title>

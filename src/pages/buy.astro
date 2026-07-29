@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const steps = [
+  { num: '01', title: 'Consultation', copy: 'A no-pressure conversation about what you want, your timeline, financing, and tradeoffs.' },
+  { num: '02', title: 'Search & tours', copy: 'Curated listings — not a firehose. In-person tours with an agent who reads houses honestly.' },
+  { num: '03', title: 'Offer & negotiation', copy: 'Pricing analysis based on your block, and a strategy built around the seller\'s motivation.' },
+  { num: '04', title: 'Inspection & contract', copy: 'Contracts read word by word. Repair negotiations handled by someone who knows what\'s worth pushing on.' },
+  { num: '05', title: 'Closing', copy: 'We stay engaged through underwriting, appraisal, and closing — so nothing falls through in the final stretch.' },
+];
+
+const who = [
+  { title: 'First-time buyers', copy: 'Clear guidance, no jargon, no pressure.' },
+  { title: 'Move-up buyers', copy: 'Coordinated buy + sell so timing works out.' },
+  { title: 'Investors', copy: 'Cash-flow analysis, off-market channels, portfolio building.' },
+  { title: 'Relocations', copy: 'Remote tours and deep DFW neighborhood knowledge.' },
+];
+---
+
+<Layout
+  title="Buying a home"
+  description="Buyer representation across Dallas, Park Cities, Richardson, Plano, Garland, and Frisco. Twenty years, 1,000+ closings, one small team."
+  path="/buy/"
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Buy</span>
+      <h1>Find your next home.<br /><span class="brand-text">Without the pressure.</span></h1>
+      <p class="lede">
+        First-time buyer, investor, relocating to Dallas — same standard of care. Twenty
+        years of local expertise, on your side of the table.
+      </p>
+      <div class="page-hero__actions">
+        <a href="/contact/?interest=buy" class="btn btn--brand btn--lg">Start a search</a>
+        <a href="tel:+12147404989" class="btn btn--ghost btn--lg">Call 214-740-4989</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we help -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Who we help</span>
+      <h2>Every kind of buyer.</h2>
+      <div class="who">
+        {who.map(w => (
+          <div class="who__item">
+            <div class="who__title">{w.title}</div>
+            <div class="who__copy">{w.copy}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">The process</span>
+          <h2>Five steps, done properly.</h2>
+        </div>
+        <p class="lede section__head-copy">
+          Every buyer is different, but the shape of a good transaction is the same.
+          Here's how we work.
+        </p>
+      </div>
+
+      <div class="steps">
+        {steps.map(s => (
+          <article class="step">
+            <div class="step__num">{s.num}</div>
+            <h3 class="step__title">{s.title}</h3>
+            <p class="step__copy">{s.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark cta-section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <span class="eyebrow">Ready when you are</span>
+          <h2 style="margin-bottom:0.75rem;">Let's find the right house.</h2>
+          <p style="color:#a3a6ad;margin:0;max-width:60ch;">
+            One conversation and we'll know if we can help. No commitment, no scripts.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a href="tel:+12147404989" class="btn btn--brand btn--lg">Call now</a>
+          <a href="/contact/?interest=buy" class="btn btn--outline-light btn--lg">Send a message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-bg-soft);
+    padding-block: clamp(4rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .brand-text { color: var(--color-brand); font-weight: 700; }
+
+  .page-hero__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .section__head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 820px) {
+    .section__head { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-bottom: 2.5rem; }
+  }
+  .section__head-copy { margin: 0; }
+
+  .who {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  @media (max-width: 900px) { .who { grid-template-columns: repeat(2, 1fr); } }
+
+  .who__item {
+    padding: 1.5rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .who__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .who__copy { color: var(--color-muted); font-size: 0.92rem; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .step {
+    background: var(--color-bg);
+    padding: 2rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .step__num {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .step__copy {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .cta-section { padding-block: 4rem; }
+  .cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+</style>
