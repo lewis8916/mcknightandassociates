@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Thank you"
+  description="Thank you for reaching out to McKnight & Associates. We'll be in touch soon."
+  path="/thanks/"
+>
+  <section class="section thanks">
+    <div class="container container--narrow thanks__inner">
+      <div class="thanks__mark" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <span class="eyebrow">Message received</span>
+      <h1>Thanks — we'll be in touch.</h1>
+      <p class="lede">
+        Someone from our team will reply personally, usually within one business day.
+        If it's urgent, we'd love it if you gave us a call.
+      </p>
+
+      <div class="thanks__contact">
+        <a href="tel:+12147404989" class="thanks__contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <div>
+            <div class="thanks__contact-label">Call us</div>
+            <div class="thanks__contact-value">214-740-4989</div>
+          </div>
+        </a>
+        <a href="mailto:Lewis@mcknight.com" class="thanks__contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div>
+            <div class="thanks__contact-label">Email us</div>
+            <div class="thanks__contact-value">Lewis@mcknight.com</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="thanks__nav">
+        <a href="/" class="btn btn--ghost">← Back to home</a>
+        <a href="/team/" class="btn">Meet the team</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thanks {
+    background: var(--color-bg-soft);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .thanks__inner {
+    text-align: center;
+  }
+
+  .thanks__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    background: var(--color-brand);
+    color: #ffffff;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    box-shadow: 0 12px 32px rgba(160, 37, 51, 0.25);
+  }
+
+  .thanks .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .thanks h1 {
+    margin-bottom: 1.25rem;
+    max-width: 20ch;
+    margin-inline: auto;
+  }
+
+  .thanks .lede {
+    margin-inline: auto;
+    margin-bottom: 2.5rem;
+  }
+
+  .thanks__contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+  }
+
+  @media (max-width: 520px) {
+    .thanks__contact { grid-template-columns: 1fr; }
+  }
+
+  .thanks__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.15rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .thanks__contact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+  }
+
+  .thanks__contact-item svg {
+    color: var(--color-brand);
+    flex-shrink: 0;
+  }
+
+  .thanks__contact-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .thanks__contact-value {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+
+  .thanks__nav {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
